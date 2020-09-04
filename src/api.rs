@@ -1,4 +1,5 @@
 use crate::account::*;
+use crate::margin::*;
 use crate::market::*;
 use crate::general::*;
 use crate::futures::general::*;
@@ -25,6 +26,15 @@ impl Binance for General {
 impl Binance for Account {
     fn new(api_key: Option<String>, secret_key: Option<String>) -> Account {
         Account {
+            client: Client::new(api_key, secret_key, API_HOST.to_string()),
+            recv_window: 5000,
+        }
+    }
+}
+
+impl Binance for Margin {
+    fn new(api_key: Option<String>, secret_key: Option<String>) -> Margin {
+        Margin {
             client: Client::new(api_key, secret_key, API_HOST.to_string()),
             recv_window: 5000,
         }

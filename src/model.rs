@@ -155,11 +155,11 @@ pub struct Transaction {
     pub transact_time: u64,
     #[serde(with = "string_or_float")]
     pub price: f64,
-    #[serde(with = "string_or_float")]    
+    #[serde(with = "string_or_float")]
     pub orig_qty: f64,
-    #[serde(with = "string_or_float")]    
+    #[serde(with = "string_or_float")]
     pub executed_qty: f64,
-    #[serde(with = "string_or_float")]    
+    #[serde(with = "string_or_float")]
     pub cummulative_quote_qty: f64,
     pub status: String,
     pub time_in_force: String,
@@ -172,9 +172,9 @@ pub struct Transaction {
 pub struct FillInfo {
     #[serde(with = "string_or_float")]
     pub price: f64,
-    #[serde(with = "string_or_float")]    
+    #[serde(with = "string_or_float")]
     pub qty: f64,
-    #[serde(with = "string_or_float")]    
+    #[serde(with = "string_or_float")]
     pub commission: f64,
     pub commission_asset: String,
     pub trade_id: Option<u64>,
@@ -695,6 +695,19 @@ pub struct DepthOrderBookEvent {
 
     #[serde(rename = "a")]
     pub asks: Vec<Asks>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct MarginAsset {
+    pub asset_full_name: String,
+    pub asset_name: String,
+    pub is_borrowable: bool,
+    pub is_mortgageable: bool,
+    #[serde(with = "string_or_float")]
+    pub user_min_borrow: f64,
+    #[serde(with = "string_or_float")]
+    pub user_min_repay: f64,
 }
 
 pub(crate) mod string_or_float {

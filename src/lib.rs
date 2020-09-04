@@ -18,6 +18,7 @@ pub mod model;
 pub mod account;
 pub mod api;
 pub mod general;
+pub mod margin;
 pub mod market;
 pub mod userstream;
 pub mod websockets;
